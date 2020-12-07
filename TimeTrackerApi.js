@@ -55,13 +55,27 @@ class TimeTrackerApi {
 	{
 		console.log('----- xhrRequestHander -----', xhr.responseURL);
 		// INSERT YOUR CODE HERE
+		
 		// open xhr request
 		xhr.send();
 
 		// when the request is successfull it will call the onload method.
 		xhr.onload = () => {
-			success_handler(xhr.response);
+			if (xhr.status !== 200) {
+				alert('onload errored');
+			} else {
+				success_handler(xhr.response);
+			}
 		}
-		
+
+		// some progress message
+		xhr.onprogress = () => {
+			
+		}
+
+		// would execute if request could not be made.
+		xhr.onerror = () => {
+			alert(`Could not complete the request! ${xhr.status} - ${xhr.statusText}`);
+		}
 	}
 }
