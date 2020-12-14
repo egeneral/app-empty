@@ -78,7 +78,11 @@ class Projects {
 		// information from the project parameter
 		let row = tableBody.insertRow();
 		row.id = project['project_id'];
+
+		// When this row is clicked, the showEditForm
+		// function will be called to handle the event
 		row.onclick = this.showEditForm;
+
 		row.insertCell(0).innerText = project['project_id'];
 		row.insertCell(1).innerText = project['title'];
 		row.insertCell(2).innerText = project['num_entries'];
@@ -108,13 +112,26 @@ class Projects {
 		// INSERT YOUR CODE HERE
 	}
 
+	/**
+	 * Update the form values to the current object selected by
+	 * the click event on the row.
+	 * @param {*} event 
+	 */
 	showEditForm(event)
 	{
 		console.log('----- showEditForm -----', event);
 		// INSERT YOUR CODE HERE
-
+		
+		// get the row parent element of the selected table cell
 		let row = event.target.parentNode;
-		console.log(`You need to edit project ${row.id}`);
+		// get the form
+		let form = document.forms[0];
+
+		// update the form elements based on the value
+		// of the event target which is the clicked row
+		form.elements[0].value = event.target.innerText;
+		form.elements[1].id = row.id;
+		
 	}
 
 	hideForm()
