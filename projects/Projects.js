@@ -78,6 +78,7 @@ class Projects {
 		// information from the project parameter
 		let row = tableBody.insertRow();
 		row.id = project['project_id'];
+		row.onclick = this.showEditForm;
 		row.insertCell(0).innerText = project['project_id'];
 		row.insertCell(1).innerText = project['title'];
 		row.insertCell(2).innerText = project['num_entries'];
@@ -105,7 +106,6 @@ class Projects {
 	{
 		console.log('----- showCreateForm -----', event);
 		// INSERT YOUR CODE HERE
-
 	}
 
 	showEditForm(event)
@@ -113,7 +113,8 @@ class Projects {
 		console.log('----- showEditForm -----', event);
 		// INSERT YOUR CODE HERE
 
-
+		let row = event.target.parentNode;
+		console.log(`You need to edit project ${row.id}`);
 	}
 
 	hideForm()
