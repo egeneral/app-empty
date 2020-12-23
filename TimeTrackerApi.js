@@ -37,7 +37,8 @@ class TimeTrackerApi {
 
 		this.xhr.open(method, this.base_url+path);
 		this.xhr.setRequestHeader('api-key', this.api_key);
-		this.xhrRequestHander(this.xhr, success_handler);
+		this.xhr.setRequestHeader('Content-type', 'multipart/form-data; charset=utf-8');
+		this.xhrRequestHander(this.xhr, parameters, success_handler);
 	}
 
 	/**
@@ -51,18 +52,18 @@ class TimeTrackerApi {
 	 * @param {*} success_handler is the callback provided in the initial 
 	 * request that must be called if the response was successful. 
 	 */
-	xhrRequestHander(xhr, success_handler = false)
+	xhrRequestHander(xhr, parameters, success_handler = false)
 	{
 		console.log('----- xhrRequestHander -----', xhr.responseURL);
 		// INSERT YOUR CODE HERE
 		
 		// open xhr request
-		xhr.send();
+		xhr.send(parameters);
 
 		// when the request is successfull it will call the onload method.
 		xhr.onload = () => {
 			if (xhr.status !== 200) {
-				alert('onload errored');
+				console.log(`Response error: ${xhr.statusText}`);
 			} else {
 				success_handler(xhr.response);
 			}

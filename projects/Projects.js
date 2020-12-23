@@ -81,7 +81,7 @@ class Projects {
 
 		// When this row is clicked, the showEditForm
 		// function will be called to handle the event
-		row.onclick = this.showEditForm;
+		row.onclick = this.showEditForm.bind(this);
 
 		row.insertCell(0).innerText = project['project_id'];
 		row.insertCell(1).innerText = project['title'];
@@ -121,7 +121,9 @@ class Projects {
 	{
 		console.log('----- showEditForm -----', event);
 		// INSERT YOUR CODE HERE
-		
+
+		if (event.target.innerHTML === 'Delete') return;
+
 		// get the row parent element of the selected table cell
 		let row = event.target.parentNode;
 		// get the form
@@ -131,7 +133,9 @@ class Projects {
 		// of the event target which is the clicked row
 		form.elements[0].value = event.target.innerText;
 		form.elements[1].id = row.id;
-		
+		form.elements[2].value = 'Edit Project'
+		console.log(form.elements[0].value);
+		form.addEventListener('submit', this.handleFormSubmit.bind(this));
 	}
 
 	hideForm()
@@ -145,7 +149,27 @@ class Projects {
 	{
 		console.log('----- handleFormSubmit -----', event);
 		// INSERT YOUR CODE HERE
-
+		event.preventDefault();
+		
+		let form = document.forms.project_form;
+		let formData = new FormData(form);
+	
+		if (form.elements[2].value === 'Edit Project') {
+			// call api
+			this.api.makeRequest(
+				'PATCH',
+				`projects/${form.elements[1].id}`, 
+				formData, 
+				this.fillProjectsWithResponse.bind(this)
+			);
+		} else {
+			this.api.makeRequest(
+				'POST',
+				`projects/`,
+				formData,
+				this.fillProjectsWithResponse.bind(this)
+			);
+		}
 	}
 
 	/////////////////////////////////////////////
