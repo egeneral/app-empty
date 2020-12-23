@@ -1,0 +1,7 @@
+#project_form {
+    visibility: hidden;
+}
+
+.form-visible {
+    visibility: visible;
+}

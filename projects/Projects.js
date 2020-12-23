@@ -14,7 +14,7 @@ class Projects {
 		this.company_id = company_id;
 
 		// INSERT YOUR CODE HERE
-		 this.loadProjects();
+		this.loadProjects();
 	}
 
 	/////////////////////////////////////////////
@@ -50,6 +50,9 @@ class Projects {
 		// Code for filling the table goes here
 		let projectList = JSON.parse(xhr_response);
 
+		let newProjectButton = document.getElementById("new_project_button");
+		newProjectButton.setAttribute('click', this.showCreateForm.bind(this));
+		
 		// There are no projects retrieved, exit the function
 		// TODO: Apply styling on the page if the project list is empty
 		if (projectList.length === 0) 
@@ -110,6 +113,7 @@ class Projects {
 	{
 		console.log('----- showCreateForm -----', event);
 		// INSERT YOUR CODE HERE
+		document.forms[0].classList.toggle('form-visible');
 	}
 
 	/**
