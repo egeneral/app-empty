@@ -1,0 +1,58 @@
+header {
+	background-color: #356915;
+	width: 100%;
+	padding: 10px;
+	background-image: url("timer.svg");
+	background-repeat: no-repeat;
+    background-position: center center;
+	background-size:contain;	
+}
+
+nav {
+	text-align: right;
+	vertical-align: baseline;
+}
+
+a {
+	font-family: Arial;
+	size: 14px;
+	color: white;
+	border: 1px solid white;
+	padding: 5px;
+	margin-left: 10px;
+	text-decoration: none;
+	opacity : 100%;
+}
+
+a:hover {
+	background: #fff;
+    color: #356915;
+	cursor: pointer;
+	opacity : 30%;
+}
+
+h1 {
+	background: #CDCDCD;
+	font-family: Arial;
+	size: 32px;
+	color: #343434;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+
+#header_title {
+	vertical-align: baseline;
+	text-align: left;
+	font-size: 24px;
+	padding:0px 0px 0px 40px;
+	font-family: Arial;
+	color: white;
+}
+
+#content_container {
+	width : 800 px;
+	border: 2px solid #CDCDCD;
+	padding: 10px;
+	margin-top: 10px;
+}

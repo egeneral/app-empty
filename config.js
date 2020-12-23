@@ -45,6 +45,7 @@ function saveUserID(profile_object)
 {
 	console.log('----- saveUserID -----', profile_object);
 	// INSERT YOUR CODE HERE
+	localStorage.setItem('user', profile_object);
 }
 
 function convertSecondsToHoursMinutesSeconds(seconds)
